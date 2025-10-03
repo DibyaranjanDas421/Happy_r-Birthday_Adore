@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday My Love ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #ff6b9d, #c44569, #ffc3a0, #ff677d);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating hearts animation */
+    .heart {
+      position: fixed;
+      font-size: 24px;
+      animation: floatUp 6s infinite;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      position: relative;
+      max-width: 900px;
+      width: 95%;
+      padding: 40px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeInScale 1s ease-out;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #fff;
+      text-align: center;
+      animation: glow 3s infinite alternate;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes glow {
+      from { 
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                     0 0 20px rgba(255, 107, 157, 0.6),
+                     2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      to { 
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1),
+                     0 0 30px rgba(255, 107, 157, 0.8),
+                     0 0 40px rgba(255, 103, 125, 0.6),
+                     2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .timer {
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 30px 0;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      letter-spacing: 2px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    .timer-units {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .timer-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .timer-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .timer-label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slideshow-wrapper {
+      margin: 30px 0;
+      position: relative;
+    }
+
+    .slideshow {
+      width: 100%;
+      height: 500px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+      position: relative;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      transform: scale(1);
+    }
+
+    .slideshow img.active {
+      opacity: 1;
+      animation: gentleZoom 8s ease-in-out infinite;
+    }
+
+    @keyframes gentleZoom {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .slide-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .indicator-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .indicator-dot.active {
+      background: #fff;
+      transform: scale(1.3);
+    }
+
+    .message {
+      margin-top: 30px;
+      font-size: 1.5rem;
+      text-align: center;
+      color: #fff;
+      font-weight: 300;
+      line-height: 1.8;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .love-note {
+      margin-top: 25px;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      color: #fff;
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .sparkle {
+      display: inline-block;
+      animation: sparkle 1.5s infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .timer { font-size: 1.5rem; }
+      .timer-value { font-size: 1.8rem; }
+      .slideshow { height: 350px; }
+      .message { font-size: 1.2rem; }
+      .container { padding: 25px; }
+    }
+
+    /* Music Control Button */
+    .music-control {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      animation: musicPulse 2s infinite;
+    }
+
+    .music-control:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes musicPulse {
+      0%, 100% { box-shadow: 0 5px 20px rgba(255, 107, 157, 0.5); }
+      50% { box-shadow: 0 5px 30px rgba(255, 107, 157, 0.8); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><span class="sparkle">✨</span> Countdown to Your Birthday <span class="sparkle">✨</span></h1>
+    
+    <div class="timer" id="timer">
+      <div id="countdown-display">Loading...</div>
+      <div class="timer-units" id="timer-units" style="display: none;">
+        <div class="timer-unit">
+          <div class="timer-value" id="days">0</div>
+          <div class="timer-label">Days</div>
+        </div>
+        <div class="timer-unit">
+          <div class="timer-value" id="hours">0</div>
+          <div class="timer-label">Hours</div>
+        </div>
+        <div class="timer-unit">
+          <div class="timer-value" id="minutes">0</div>
+          <div class="timer-label">Minutes</div>
+        </div>
+        <div class="timer-unit">
+          <div class="timer-value" id="seconds">0</div>
+          <div class="timer-label">Seconds</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="slideshow-wrapper">
+      <div class="slideshow" id="slideshow">
+        <img src="Anu_dir/1c8a7252-377c-4c9e-a015-ca6397737de0.jpg" class="active" alt="Memory">
+        <img src="Anu_dir/03a2e677-8d5a-41b8-86ee-ce98ab9a9ab2.jpg" alt="Memory">
+        <img src="Anu_dir/3c0f5d6a-44d9-44a3-ab33-b77c1daa8e21.jpg" alt="Memory">
+        <img src="Anu_dir/6a06298b-2655-4972-8aac-58bc80406f6c.jpg" alt="Memory">
+        <img src="Anu_dir/6e753e96-3e53-4911-bcdd-417cd13a4f82.jpg" alt="Memory">
+        <img src="Anu_dir/74f787dc-68bd-49f1-b26f-d09a3da4919f.jpg" alt="Memory">
+        <img src="Anu_dir/2022ab7b-d571-40ca-93d6-bb3c5f52bbf0.jpg" alt="Memory">
+        <img src="Anu_dir/8045c6bc-8fa4-4147-ae3c-ca4b90cfbc84.jpg" alt="Memory">
+        <img src="Anu_dir/66083434-e03e-4d4a-991d-20529bd702bf.jpg" alt="Memory">
+        <img src="Anu_dir/a43e9e18-da58-418c-b96d-4566f3bb1600.jpg" alt="Memory">
+        <img src="Anu_dir/a98c09cf-c8ef-4f40-9b4c-e4dab4bf8ec6.jpg" alt="Memory">
+        <img src="Anu_dir/a0882209-beb8-46b7-b29a-15904a785af1.jpg" alt="Memory">
+        <img src="Anu_dir/db411cc9-9ff4-4093-8966-e233d63adf44.jpg" alt="Memory">
+        <img src="Anu_dir/e6cdd23a-dee7-4526-9119-c8192431968f.jpg" alt="Memory">
+        <img src="Anu_dir/e6601e0f-93ed-4bac-a075-5f9c41608c89.jpg" alt="Memory">
+      </div>
+      <div class="slide-indicator" id="indicators"></div>
+    </div>
+
+    <div class="message">
+      Every moment with you is a treasure 💖<br>
+      I can't wait to celebrate your special day!
+    </div>
+
+    <div class="love-note">
+      "You are the reason I smile, the reason I dream,<br>
+      and the reason every day feels like a celebration.<br>
+      Happy Birthday to the most amazing person in my life! 🌹"
+    </div>
+  </div>
+
+  <!-- Music Control Button -->
+  <div class="music-control" id="musicControl" title="Click to play/pause music">
+    🎵
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="Anu_dir/tera-chehra-3-sanam-teri-kasam-arijit-singh-17123.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Create floating hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = ['❤️', '💕', '💖', '💗', '💝'][Math.floor(Math.random() * 5)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 3 + 's';
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      document.body.appendChild(heart);
+      
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 800);
+
+    // Countdown Timer
+    const countdown = () => {
+      const eventDate = new Date("Oct 6, 2025 00:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = eventDate - now;
+
+      const display = document.getElementById("countdown-display");
+      const units = document.getElementById("timer-units");
+
+      if (diff <= 0) {
+        display.innerHTML = "🎉 Happy Birthday My Love! 🎂🥳";
+        units.style.display = "none";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+
+      display.style.display = "none";
+      units.style.display = "flex";
+    };
+
+    setInterval(countdown, 1000);
+    countdown();
+
+    // Slideshow with indicators
+    const slides = document.querySelectorAll(".slideshow img");
+    const indicatorsContainer = document.getElementById("indicators");
+    let current = 0;
+
+    // Create indicators
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.className = 'indicator-dot';
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(index));
+      indicatorsContainer.appendChild(dot);
+    });
+
+    const indicators = document.querySelectorAll('.indicator-dot');
+
+    function goToSlide(index) {
+      slides[current].classList.remove("active");
+      indicators[current].classList.remove("active");
+      current = index;
+      slides[current].classList.add("active");
+      indicators[current].classList.add("active");
+    }
+
+    function showNextSlide() {
+      slides[current].classList.remove("active");
+      indicators[current].classList.remove("active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("active");
+      indicators[current].classList.add("active");
+    }
+
+    setInterval(showNextSlide, 4000);
+
+    // Music Control
+    const music = document.getElementById('bgMusic');
+    const musicControl = document.getElementById('musicControl');
+    let isPlaying = false;
+
+    musicControl.addEventListener('click', () => {
+      if (isPlaying) {
+        music.pause();
+        musicControl.textContent = '🎵';
+      } else {
+        music.play();
+        musicControl.textContent = '🎶';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Auto-play music on first user interaction
+    document.addEventListener('click', () => {
+      if (!isPlaying) {
+        music.play().then(() => {
+          isPlaying = true;
+          musicControl.textContent = '🎶';
+        }).catch(() => {
+          // Auto-play prevented by browser
+        });
+      }
+    }, { once: true });
+  </script>
+</body>
+</html>
